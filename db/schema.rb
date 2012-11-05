@@ -11,7 +11,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121105042401) do
+ActiveRecord::Schema.define(:version => 20121105054725) do
+
+  create_table "insults", :force => true do |t|
+    t.string   "insult"
+    t.integer  "points",     :default => 0
+    t.integer  "user_id"
+    t.boolean  "is_flagged", :default => false
+    t.datetime "created_at",                    :null => false
+    t.datetime "updated_at",                    :null => false
+  end
+
+  add_index "insults", ["user_id"], :name => "index_insults_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "name"

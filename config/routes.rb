@@ -1,4 +1,6 @@
 CollaborativeCursing::Application.routes.draw do
+  resources :insults
+
   controller :sessions do
     get 'login' => :new
 
