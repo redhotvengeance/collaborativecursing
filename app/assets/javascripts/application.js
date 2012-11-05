@@ -12,4 +12,15 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require ./config.js
+//= require_tree ./abstracts
 //= require_tree .
+
+$(document).ready(function() {
+  var controller = $('body').data('controller');
+  var action = $('body').data('action');
+
+  if (controller !== "" && CollaborativeCursing[controller] && typeof CollaborativeCursing[controller] == "function") {
+    var app = new CollaborativeCursing[controller](action);
+  }
+});
