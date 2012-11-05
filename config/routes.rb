@@ -1,4 +1,6 @@
 CollaborativeCursing::Application.routes.draw do
+  root :to => "home#index"
+
   resources :insults
 
   controller :sessions do
