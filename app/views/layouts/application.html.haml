@@ -2,8 +2,40 @@
 %html
   %head
     %title Collaborative Cursing
+    %link{:href => 'http://fonts.googleapis.com/css?family=Arvo:400,700|Alegreya+SC', :rel => 'stylesheet', :type => 'text/css'}
     = stylesheet_link_tag :application, :media => "all"
     = javascript_include_tag :application
     = csrf_meta_tags
   %body{'data-controller' => controller_name.capitalize, 'data-action' => action_name.downcase}
-    = yield
+    .wrapper
+      %header.sidebar
+        %a.logo{:href => root_path}
+        %span
+        %ul.user-info
+          -if current_user
+            %li.points
+              %p 250
+            %li
+              =link_to current_user.name, user_path(current_user.id)
+            %li.logout
+              =link_to 'Logout', logout_path, method: :delete, class: 'logout'
+          -else
+            %li
+              =link_to 'Sign Up', '/users/new'
+            %li.or
+              %p or
+            %li
+              =link_to 'Login', login_path
+        %nav.main-nav
+          %ul
+            %li
+              %a{:href => '#'} TOP RATED
+            %li
+              %a{:href => '#'} NEWEST
+            -if current_user
+              %li
+                %a{:href => '#'} MINE
+        .footer
+          %p Furiously formed by <a href='http://redhotvengeance.com/' target='_blank'>Red Hot Vengeance</a>
+          %p Copyright 2012
+      = yield

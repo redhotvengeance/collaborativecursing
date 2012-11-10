@@ -1,0 +1,110 @@
+@import '../base/config'
+@import 'config'
+
+.sidebar
+  position: absolute
+  width: 250px
+  height: 100%
+  background-image: url($cdn + '/images/global/sidebar_bg.png')
+  right: 0
+
+  > span
+    display: block
+    width: 210px
+    height: 1px
+    background-color: #b3b4b4
+    margin-left: auto
+    margin-right: auto
+
+.logo
+  display: block
+  background-image: url($cdn + '/images/global/logo.png')
+  width: 210px
+  height: 71px
+  margin-left: auto
+  margin-right: auto
+  margin-top: 15px
+  margin-bottom: 15px
+
+.user-info
+  position: relative
+  width: 210px
+  text-align: right
+  margin-top: 5px
+  margin-left: auto
+  margin-right: auto
+
+  > li
+    color: white
+    float: right
+
+    > a
+      display: inline-block
+      max-width: 160px
+      color: white
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
+
+    &.or
+      > p
+        display: inline
+        color: #ccc
+        padding-left: 3px
+        padding-right: 3px
+
+    &.points
+      > p
+        display: inline
+        color: white
+        clear: both
+        border-left: 1px solid #ccc
+        margin-left: 6px
+        padding-left: 6px
+
+    &.logout
+      clear: both
+
+.main-nav
+  position: relative
+  top: 60px
+
+  > ul
+    > li
+      padding-top: 10px
+      padding-bottom: 10px
+      padding-left: 20px
+
+      > a
+        font-size: 15px
+        font-size: .9375rem
+        font-weight: 700
+
+.footer
+  position: absolute
+  width: 250px
+  height: 50px
+  bottom: 0
+  background-color: #303030
+  background-color: rgba(0, 0, 0, .5)
+  text-align: center
+  padding-top: 11px
+
+  > p
+    font-family: 'Alegreya SC', serif
+    font-size: 12px
+    font-size: .75rem
+    color: white
+    margin-top: 2px
+    text-shadow: 1px 1px 1px rgba(0, 0, 0, .4)
+    filter: dropshadow(color=rgba(0, 0, 0, .4), offx=1, offy=1)
+
+    > a
+      font-family: 'Alegreya SC', serif
+      font-size: 12px
+      font-size: .75rem
+      color: white
+
+      &:hover
+        color: #901111
+        text-decoration: none
