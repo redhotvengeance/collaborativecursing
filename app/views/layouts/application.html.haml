@@ -14,7 +14,7 @@
         %ul.user-info
           -if current_user
             %li.points
-              %p 250
+              %p= current_user.points
             %li
               =link_to current_user.name, user_path(current_user.id)
             %li.logout
