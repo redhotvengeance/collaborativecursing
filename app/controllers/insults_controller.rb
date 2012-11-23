@@ -54,11 +54,12 @@ class InsultsController < ApplicationController
 
     respond_to do |format|
       if @insult.save
-        format.html { redirect_to @insult, notice: 'Insult was successfully created.' }
         format.json { render json: @insult, status: :created, location: @insult }
+        format.html { redirect_to root_path, notice: 'You\'ve successfully joined the ranks of jackassery!' }
       else
-        format.html { render action: "new" }
         format.json { render json: @insult.errors, status: :unprocessable_entity }
+        format.html { redirect_to root_path, notice: 'Your insult must actually exist for it to be insulting.' }
+        #format.html { render action: "new" }
       end
     end
   end

@@ -1,0 +1,11 @@
+.submit-insult-box
+  %h1 The crowdsourced engine of world-class insults.
+  = form_for @insult do |f|
+    %h2.insult-notice= notice
+    = f.text_area :insult, :class => 'insult-box', :placeholder => "Go on, insult us."
+    .insult-submit
+      %h2 *We are equal opportunity insult-artists. Please make sure your insult can apply to all humans, regardless of religion, race, or gender.*
+      - if current_user
+        = f.submit 'Submit', :class => 'insult-submit-button'
+      - else
+        = f.submit 'Submit Anonymously', :class => 'insult-submit-button'

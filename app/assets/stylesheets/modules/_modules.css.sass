@@ -1,4 +1,5 @@
 @import '../base/config'
+@import '../base/mixins'
 @import 'config'
 
 .sidebar
@@ -45,6 +46,7 @@
       overflow: hidden
       text-overflow: ellipsis
       white-space: nowrap
+      padding-bottom: 2px
 
     &.or
       > p
@@ -96,8 +98,7 @@
     font-size: .75rem
     color: white
     margin-top: 2px
-    text-shadow: 1px 1px 1px rgba(0, 0, 0, .4)
-    filter: dropshadow(color=rgba(0, 0, 0, .4), offx=1, offy=1)
+    @include text-shadow(1px, 1px, 1px, rgba(0, 0, 0, .4))
 
     > a
       font-family: 'Alegreya SC', serif
@@ -108,3 +109,88 @@
       &:hover
         color: #901111
         text-decoration: none
+
+.submit-insult-box
+  display: block
+  position: relative
+  width: 680px
+  background-color: $orange
+  text-align: center
+
+  > h1
+    padding-top: 15px
+    @include text-shadow(1px, 1px, 2px, rgba(0, 0, 0, .1))
+
+.insult-box
+  width: 620px
+  max-width: 620px
+  height: 72px
+  vertical-align: top
+  font-family: 'Arvo', serif
+  font-size: 20px
+  font-size: 1.25rem
+  letter-spacing: 1.6px
+  letter-spacing: .1rem
+  line-height: 27.2px
+  line-height: 1.7rem
+  padding-top: 8px
+  padding-bottom: 8px
+  padding-left: 12px
+  padding-right: 12px
+  opacity: .9
+  margin-top: 15px
+  margin-bottom: 20px
+  margin-left: auto
+  margin-right: auto
+  position: relative
+
+.insult-submit
+  display: block
+  width: 620px
+  margin-top: -10px
+  margin-left: auto
+  margin-right: auto
+  text-align: right
+
+  > h2
+    font-family: 'Arvo', serif
+    font-size: 14.4px
+    font-size: .9rem
+    font-weight: 400
+    font-style: italic
+    line-height: 20.8px
+    line-height: 1.3rem
+    color: white
+    width: 620px
+    margin-left: auto
+    margin-right: auto
+    padding-bottom: 10px
+    text-align: center
+
+  > input
+    font-family: 'Arvo', serif
+    font-size: 12.8px
+    font-size: .8rem
+    border: none
+    padding-top: 11px
+    padding-bottom: 10px
+    padding-left: 10px
+    padding-right: 10px
+    background-color: #fff
+    background-color: rgba(255, 255, 255, .5)
+    cursor: pointer
+    color: #444
+    margin-bottom: 15px
+    position: relative
+    right: 0
+
+    &:hover
+      background-color: #fff
+
+.insult-notice
+  font-family: 'Arvo', serif
+  font-size: 12.8px
+  font-size: .8rem
+  padding-top: 15px
+  padding-bottom: 2px
+  color: darkred
