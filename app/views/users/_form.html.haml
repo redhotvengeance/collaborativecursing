@@ -5,18 +5,18 @@
       %ul
         - @user.errors.full_messages.each do |msg|
           %li= msg
-
-  .field
-    = f.label :name, :class => 'form-label'
-    = f.text_field :name, :class => 'form-text', :placeholder => 'your_mom'
-  .field
-    = f.label :email, :class => 'form-label'
-    = f.email_field :email, :class => 'form-text', :placeholder => 'check.you.are@real.com'
-  .field
-    = f.label :password, 'Password', :class => 'form-label'
-    = f.password_field :password, :class => 'form-text', :placeholder => 'make it good'
-  .field
-    = f.label :password_confirmation, 'Confirm', :class => 'form-label'
-    = f.password_field :password_confirmation, :class => 'form-text', :placeholder => 'make it the same'
-  .actions
-    = f.submit 'Save', :class => 'form-submit'
+  .form
+    .field
+      = f.label :name, :class => 'form-label'
+      = f.text_field :name, :class => 'form-text', :placeholder => 'your_mom'
+    .field
+      = f.label :email, :class => 'form-label'
+      = f.email_field :email, :class => 'form-text', :placeholder => 'check.you.are@real.com'
+    .field
+      = f.label :password, 'Password', :class => 'form-label'
+      = f.password_field :password, :class => 'form-text', :placeholder => 'make it good'
+    .field
+      = f.label :password_confirmation, 'Confirm', :class => 'form-label'
+      = f.password_field :password_confirmation, :class => 'form-text', :placeholder => 'make it the same'
+    .field
+      = f.submit 'Save', :class => 'form-submit'
