@@ -14,7 +14,7 @@ class HomeController < ApplicationController
       @filter = 'top'
       @insults = get_insults_by_rating(set)
     end
-
+    
     @insult = Insult.new
   end
 end

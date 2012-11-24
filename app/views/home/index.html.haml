@@ -15,15 +15,25 @@
   - @insults.each do |insult|
     .insult
       .voting-arrows
-        = form_tag('/vote', :method => 'post') do
-          = hidden_field_tag(:insult, insult.id)
-          = hidden_field_tag(:value, 'up')
-          = submit_tag('', :class => 'up-arrow-off', :disabled => !current_user)
+        - if (user_vote(insult) == 'up')
+          = form_tag('/unvote', :method => 'delete') do
+            = hidden_field_tag(:insult, insult.id)
+            = submit_tag('', :class => 'up-arrow-on', :disabled => !current_user)
+        - else
+          = form_tag('/vote', :method => 'post') do
+            = hidden_field_tag(:insult, insult.id)
+            = hidden_field_tag(:value, 'up')
+            = submit_tag('', :class => 'up-arrow-off', :disabled => !current_user)
         %span.rating= insult.points
-        = form_tag('/vote', :method => 'post') do
-          = hidden_field_tag(:insult, insult.id)
-          = hidden_field_tag(:value, 'down')
-          = submit_tag('', :class => 'down-arrow-off', :disabled => !current_user)
+        - if (user_vote(insult) == 'down')
+          = form_tag('/unvote', :method => 'delete') do
+            = hidden_field_tag(:insult, insult.id)
+            = submit_tag('', :class => 'down-arrow-on', :disabled => !current_user)
+        - else
+          = form_tag('/vote', :method => 'post') do
+            = hidden_field_tag(:insult, insult.id)
+            = hidden_field_tag(:value, 'down')
+            = submit_tag('', :class => 'down-arrow-off', :disabled => !current_user)
       .insult-body
         %h3= insult.insult
         - if insult.user
