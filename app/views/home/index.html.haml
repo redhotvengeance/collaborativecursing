@@ -9,3 +9,18 @@
         = f.submit 'Submit', :class => 'insult-submit-button'
       - else
         = f.submit 'Submit Anonymously', :class => 'insult-submit-button'
+.insults
+  - @insults.each do |insult|
+    .insult
+      .voting-arrows
+        %a.up-arrow-off{:href => '#'}
+        %span.rating= insult.points
+        %a.down-arrow-off{:href => '#'}
+      .insult-body
+        %h3= insult.insult
+        - if insult.user
+          %span.author!= "Submitted by <a href='#'>#{insult.user.name}</a>"
+        - else
+          %span.author Submitted by Anonymous
+        
+        %a.flag{:href => '#'} Flag

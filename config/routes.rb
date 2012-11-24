@@ -1,6 +1,6 @@
 CollaborativeCursing::Application.routes.draw do
-  root :to => "home#index"
-
+  root :to => "Home#index"
+  
   resources :insults
 
   controller :sessions do
@@ -12,6 +12,8 @@ CollaborativeCursing::Application.routes.draw do
   end
 
   resources :users
+
+  match '/*filter' => "Home#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

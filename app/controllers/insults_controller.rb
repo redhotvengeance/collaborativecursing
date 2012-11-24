@@ -1,4 +1,6 @@
 class InsultsController < ApplicationController
+  include InsultsRetriever
+  
   # GET /insults
   # GET /insults.json
   def index
