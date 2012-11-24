@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121110235243) do
+ActiveRecord::Schema.define(:version => 20121124030135) do
 
   create_table "insults", :force => true do |t|
     t.string   "insult"
@@ -32,5 +32,16 @@ ActiveRecord::Schema.define(:version => 20121110235243) do
     t.datetime "updated_at",                     :null => false
     t.integer  "points",          :default => 0
   end
+
+  create_table "votes", :force => true do |t|
+    t.integer  "value"
+    t.integer  "user_id"
+    t.integer  "insult_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "votes", ["insult_id"], :name => "index_votes_on_insult_id"
+  add_index "votes", ["user_id"], :name => "index_votes_on_user_id"
 
 end

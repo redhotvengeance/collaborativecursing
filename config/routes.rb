@@ -13,6 +13,12 @@ CollaborativeCursing::Application.routes.draw do
 
   resources :users
 
+  controller :votes do
+    post "vote" => :vote
+
+    delete "unvote" => :destroy
+  end
+
   match '/*filter' => "Home#index"
 
   # The priority is based upon order of creation:

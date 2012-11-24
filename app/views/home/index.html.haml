@@ -9,13 +9,21 @@
         = f.submit 'Submit', :class => 'insult-submit-button'
       - else
         = f.submit 'Submit Anonymously', :class => 'insult-submit-button'
+- if (alert)
+  %span.vote-notice= alert
 .insults
   - @insults.each do |insult|
     .insult
       .voting-arrows
-        %a.up-arrow-off{:href => '#'}
+        = form_tag('/vote', :method => 'post') do
+          = hidden_field_tag(:insult, insult.id)
+          = hidden_field_tag(:value, 'up')
+          = submit_tag('', :class => 'up-arrow-off', :disabled => !current_user)
         %span.rating= insult.points
-        %a.down-arrow-off{:href => '#'}
+        = form_tag('/vote', :method => 'post') do
+          = hidden_field_tag(:insult, insult.id)
+          = hidden_field_tag(:value, 'down')
+          = submit_tag('', :class => 'down-arrow-off', :disabled => !current_user)
       .insult-body
         %h3= insult.insult
         - if insult.user
