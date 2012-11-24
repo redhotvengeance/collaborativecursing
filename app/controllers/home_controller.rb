@@ -10,6 +10,11 @@ class HomeController < ApplicationController
 
     if @filter == 'new'
       @insults = get_insults_by_age(set)
+    elsif @filter == 'mine'
+      if (!session[:user_id])
+        redirect_to '/login'
+      end
+      @insults = get_insults_by_user(session[:user_id])
     else
       @filter = 'top'
       @insults = get_insults_by_rating(set)

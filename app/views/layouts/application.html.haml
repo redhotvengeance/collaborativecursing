@@ -33,8 +33,8 @@
             %li{:class => current_nav_item('new')}
               %a{:href => '/new'} NEWEST
             -if current_user
-              %li
-                %a{:href => '#'} MINE
+              %li{:class => current_nav_item('mine')}
+                %a{:href => '/mine'} MINE
         .footer
           %p Furiously formed by <a href='http://redhotvengeance.com/' target='_blank'>Red Hot Vengeance</a>
           %p Copyright 2012
