@@ -2,7 +2,7 @@
   %h1 Login and Start Cursing
 
   - if flash[:alert]
-    %p#notice= flash[:alert]
+    %h2.notice= flash[:alert]
 
   - if session[:user_id]
     %p Logged in
