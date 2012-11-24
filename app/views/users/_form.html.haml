@@ -1,10 +1,10 @@
 = form_for @user do |f|
-  - if @user.errors.any?
-    #error_explanation
-      %h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
-      %ul
-        - @user.errors.full_messages.each do |msg|
-          %li= msg
+  //- if @user.errors.any?
+  //  #error_explanation
+  //    %h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+  //    %ul
+  //      - @user.errors.full_messages.each do |msg|
+  //        %li= msg
   .form
     .field
       = f.label :name, :class => 'form-label'
@@ -19,4 +19,4 @@
       = f.label :password_confirmation, 'Confirm', :class => 'form-label'
       = f.password_field :password_confirmation, :class => 'form-text', :placeholder => 'make it the same'
     .field
-      = f.submit 'Save', :class => 'form-submit'
+      = f.submit 'Sign Up', :class => 'form-submit'
