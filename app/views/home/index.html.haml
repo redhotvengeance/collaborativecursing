@@ -1,4 +1,4 @@
-.submit-insult-box
+.top-box
   %h1 The crowdsourced engine of world-class insults.
   = form_for @insult do |f|
     %h2.insult-notice= notice
@@ -6,9 +6,9 @@
     .insult-submit
       %h2 *We are equal opportunity insult-artists. Please make sure your insult can apply to all humans, regardless of religion, race, or gender.*
       - if current_user
-        = f.submit 'Submit', :class => 'insult-submit-button'
+        = f.submit 'Submit', :class => 'form-submit'
       - else
-        = f.submit 'Submit Anonymously', :class => 'insult-submit-button'
+        = f.submit 'Submit Anonymously', :class => 'form-submit'
 - if (alert)
   %span.vote-notice= alert
 .insults
