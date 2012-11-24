@@ -1,19 +1,19 @@
 class UsersController < ApplicationController
+  include InsultsRetriever
+  
+  skip_before_filter :authorize, only: [:new, :create, :show]
+
   # GET /users
   # GET /users.json
   def index
-    @users = User.order(:name)
-
-    respond_to do |format|
-      format.html # index.html.erb
-      format.json { render json: @users }
-    end
+    
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    @insults = get_insults_by_user(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -34,6 +34,10 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    unless session[:user_id] == params[:id].to_i
+      redirect_to user_path(session[:user_id])
+    end
+
     @user = User.find(params[:id])
   end
 

@@ -37,7 +37,7 @@
       .insult-body
         %h3= insult.insult
         - if insult.user
-          %span.author!= "Submitted by <a href='#'>#{insult.user.name}</a>"
+          %span.author!= "Submitted by <a href='#{user_path(insult.user.id)}'>#{insult.user.name}</a>"
         - else
           %span.author Submitted by Anonymous
         

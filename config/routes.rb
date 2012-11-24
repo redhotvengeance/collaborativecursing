@@ -4,22 +4,29 @@ CollaborativeCursing::Application.routes.draw do
   resources :insults
 
   controller :sessions do
-    get 'login' => :new
-
+    get 'login' => :new, :as => 'login'
     post 'login' => :create
-
-    delete 'logout' => :destroy
+    delete 'logout' => :destroy, :as => 'logout'
   end
 
-  resources :users
+  controller :users do
+    get '/user' => redirect('/')
+    post '/users' => :create
+    get '/user/new' => :new, :as => 'sign_up'
+    get '/user/:id' => :show, :as => 'user'
+    put '/user/:id' => :update
+    delete '/user/:id' => :destroy
+    get '/user/:id/edit' => :edit, :as => 'edit_user'
+  end
 
   controller :votes do
     post "vote" => :vote
-
     delete "unvote" => :destroy
   end
 
   match '/*filter' => "Home#index"
+
+  match '*other' => redirect('/')
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

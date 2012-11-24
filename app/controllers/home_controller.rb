@@ -1,6 +1,8 @@
 class HomeController < ApplicationController
   include InsultsRetriever
 
+  skip_before_filter :authorize
+
   def index
 
     if params[:filter]
