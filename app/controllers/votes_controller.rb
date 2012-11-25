@@ -26,15 +26,15 @@ class VotesController < ApplicationController
               tally_user_points(insult.user_id)
             end
 
-            redirect_to '/'
+            redirect_to "#{params[:redirect]}"
           else
-            redirect_to '/', :alert =>"Stop fucking with things! I'm smarter than you."
+            redirect_to "#{params[:redirect]}", :alert =>"Stop fucking with things! I'm smarter than you."
           end
         else
-          redirect_to '/', :alert =>"Tut, tut. No cheating, now."
+          redirect_to "#{params[:redirect]}", :alert =>"Tut, tut. No cheating, now."
         end
       else
-        redirect_to '/', :alert =>"You must be logged in to vote!"
+        redirect_to "#{params[:redirect]}", :alert =>"You must be logged in to vote!"
       end
     end
   end
@@ -60,12 +60,12 @@ class VotesController < ApplicationController
             end
           end
 
-          redirect_to '/'
+          redirect_to "#{params[:redirect]}"
         else
-          redirect_to '/', :alert =>"Stop fucking with things! I'm smarter than you."
+          redirect_to "#{params[:redirect]}", :alert =>"Stop fucking with things! I'm smarter than you."
         end
       else
-        redirect_to '/', :alert =>"You must be logged in to vote!"
+        redirect_to "#{params[:redirect]}", :alert =>"You must be logged in to vote!"
       end
     end
   end
