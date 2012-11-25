@@ -1,26 +1,17 @@
 class @CollaborativeCursing.Home extends @CollaborativeCursing.AbstractController
   index: =>
-    $('.insult-notice').hide()
+    notice = $('.insult-notice')
+    if (notice.text() is '')
+      $('.insult-notice').hide()
+    else
+      $('.insult-notice').delay(4000).slideUp()
     $('.insult-submit').hide()
     $('.insult-box').focus (event) =>
       $('.insult-submit').slideDown()
     $('.insult-box').blur (event) =>
       $('.insult-submit').slideUp()
     $('.insult-submit').click (event) =>
-      event.preventDefault()
-      if $('.insult-box').val() isnt ''
-        $.ajax
-          url: '/insults'
-          type: 'POST'
-          dataType: 'json'
-          data: $('#new_insult').serialize()
-          error: (event) =>
-            $('.insult-notice').text 'Hmmm, somthing went wrong. Give it another shot!'
-            $('.insult-notice').slideDown()
-          success: (data) =>
-            $('.insult-notice').text 'You\'ve successfully joined the ranks of jackassery!'
-            $('.insult-notice').slideDown().delay(3000).slideUp()
-            $('.insult-box').val ''
-      else
+      if $('.insult-box').val() is ''
+        event.preventDefault()
         $('.insult-notice').text 'Your insult must actually exist for it to be insulting.'
         $('.insult-notice').slideDown()
