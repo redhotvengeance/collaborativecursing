@@ -2,12 +2,32 @@
 @import '../base/mixins'
 @import 'config'
 
+.content
+  position: relative
+  width: 60%
+  left: 8%
+
+@media screen and (max-width: 1120px)
+  .content
+    width: 63%
+    left: 4%
+
+@media screen and (max-width: 920px)
+  .content
+    width: 61%
+    left: 3%
+
+@media screen and (max-width: 768px)
+  .content
+    width: 65%
+    left: 0
+
 .sidebar
-  position: absolute
+  position: fixed
   width: 250px
   height: 100%
   background-image: url($cdn + '/images/global/sidebar_bg.png')
-  right: 0
+  right: 8%
 
   > span
     display: block
@@ -16,6 +36,22 @@
     background-color: #b3b4b4
     margin-left: auto
     margin-right: auto
+
+@media screen and (max-width: 1120px)
+  .sidebar
+    right: 4%
+
+@media screen and (max-width: 920px)
+  .sidebar
+    right: 3%
+
+@media screen and (max-width: 768px)
+  .sidebar
+    right: 0
+
+@media screen and (max-width: 715px)
+  .sidebar
+    position: absolute
 
 .logo
   display: block
@@ -117,11 +153,14 @@
 .top-box
   display: block
   position: relative
-  width: 680px
+  width: 100%
   background-color: $orange
   text-align: center
 
   > h1
+    width: 90%
+    margin-left: auto
+    margin-right: auto
     padding-top: 15px
     @include text-shadow(1px, 1px, 2px, rgba(0, 0, 0, .1))
 
@@ -177,7 +216,7 @@
     background-color: $dark-red
 
 .form-label
-  width: 90px
+  width: 95px
   display: inline-block
   text-align: right
   font-family: 'Arvo', serif
@@ -189,7 +228,7 @@
   padding-right: 10px
 
 .form-text
-  width: 500px
+  width: 70%
   height: 45px
   border: none
   font-family: 'Arvo', serif
@@ -220,8 +259,9 @@
     background-color: #fff
 
 .insult-box
-  width: 620px
-  max-width: 620px
+  width: 90%
+  min-width: 90%
+  max-width: 90%
   height: 72px
   vertical-align: top
   font-family: 'Arvo', serif
@@ -245,7 +285,7 @@
 
 .insult-submit
   display: block
-  width: 620px
+  width: 90%
   margin-top: -10px
   margin-left: auto
   margin-right: auto
@@ -260,7 +300,7 @@
     line-height: 20.8px
     line-height: 1.3rem
     color: white
-    width: 620px
+    width: 90%
     margin-left: auto
     margin-right: auto
     padding-bottom: 10px
@@ -294,7 +334,7 @@
   display: block
 
 .insult
-  width: 680px
+  width: 100%
   min-height: 115px
   padding-top: 15px
   padding-bottom: 20px
@@ -306,7 +346,8 @@
 .insult-body
   display: inline-block
   position: relative
-  left: 65px
+  width: 90%
+  left: 10%
 
   > h3
     font-family: 'Alegreya SC', serif
@@ -314,7 +355,7 @@
     font-size: 1.5625rem
     font-weight: 400
     font-style: normal
-    width: 615px
+    width: 100%
     padding: 5px
 
   >.author
@@ -347,6 +388,16 @@
 
     &:hover
       color: $orange
+
+@media screen and (max-width: 920px)
+  .insult-body
+    width: 88%
+    left: 12%
+
+@media screen and (max-width: 768px)
+  .insult-body
+    width: 85%
+    left: 15%
 
 .voting-arrows
   display: inline-block
