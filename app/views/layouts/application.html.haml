@@ -1,11 +1,8 @@
 !!! 5
 %html
-  %head
-    %title Collaborative Cursing
-    %link{:href => 'http://fonts.googleapis.com/css?family=Arvo:400,400italic,700|Alegreya+SC', :rel => 'stylesheet', :type => 'text/css'}
-    = stylesheet_link_tag :application, :media => "all"
-    = javascript_include_tag :application
-    = csrf_meta_tags
+  
+  =render(:partial => "./partials/head")
+
   %body{'data-controller' => controller_name.capitalize, 'data-action' => action_name.downcase}
     .wrapper
       %header.sidebar
