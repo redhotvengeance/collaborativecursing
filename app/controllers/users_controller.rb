@@ -7,7 +7,7 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    @insults = get_insults_by_user(params[:id])
+    @insults = get_insults_by_user(params[:id], 0, true, nil)[:insults]
 
     respond_to do |format|
       format.html # show.html.erb

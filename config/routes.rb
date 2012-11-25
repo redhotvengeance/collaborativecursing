@@ -1,7 +1,13 @@
 CollaborativeCursing::Application.routes.draw do
   root :to => "Home#index"
   
-  resources :insults
+  #resources :insults
+
+  controller :insults do
+    get 'insults' => :index
+    post 'insults' => :create
+    delete 'insults/:id' => :destroy
+  end
 
   controller :sessions do
     get 'login' => :new, :as => 'login'
@@ -10,13 +16,13 @@ CollaborativeCursing::Application.routes.draw do
   end
 
   controller :users do
-    get '/user' => redirect('/')
-    post '/users' => :create
-    get '/user/new' => :new, :as => 'sign_up'
-    get '/user/:id' => :show, :as => 'user'
-    put '/user/:id' => :update
-    delete '/user/:id' => :destroy
-    get '/user/:id/edit' => :edit, :as => 'edit_user'
+    get 'user' => redirect('/')
+    post 'users' => :create
+    get 'user/new' => :new, :as => 'sign_up'
+    get 'user/:id' => :show, :as => 'user'
+    put 'user/:id' => :update
+    delete 'user/:id' => :destroy
+    get 'user/:id/edit' => :edit, :as => 'edit_user'
   end
 
   controller :votes do

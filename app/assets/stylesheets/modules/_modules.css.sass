@@ -53,6 +53,43 @@
   .sidebar
     position: absolute
 
+.next
+  display: inline-block
+  width: 70px
+  height: 35px
+  background-image: url($cdn + '/images/global/right_arrow_off.png')
+  background-repeat: no-repeat
+  background-position: 44px 5px
+  background-color: rgba(255, 162, 0, .4)
+  padding-top: 12px
+  padding-left: 12px
+  //margin-bottom: 25px
+  float: right
+
+  &:hover
+    background-image: url($cdn + '/images/global/right_arrow_on.png')
+    text-decoration: none
+
+.previous
+  display: inline-block
+  width: 94px
+  height: 35px
+  background-image: url($cdn + '/images/global/left_arrow_off.png')
+  background-repeat: no-repeat
+  background-position: 7px 5px
+  background-color: rgba(255, 162, 0, .4)
+  padding-top: 12px
+  padding-left: 32px
+  //margin-bottom: 25px
+  float: left
+
+  &:hover
+    background-image: url($cdn + '/images/global/left_arrow_on.png')
+    text-decoration: none
+
+.insults
+  padding-bottom: 50px
+
 .logo
   display: block
   background-image: url($cdn + '/images/global/logo.png')

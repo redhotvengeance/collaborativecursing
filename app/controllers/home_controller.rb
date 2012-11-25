@@ -4,24 +4,47 @@ class HomeController < ApplicationController
   skip_before_filter :authorize
 
   def index
+    @filter = 'top'
+    set = 0
 
     if params[:filter]
       @filter = params[:filter].split('/')[0]
-      set = params[:filter].split('/')[1]
+      set = params[:filter].split('/')[1].to_i
     end
 
     if @filter == 'new'
-      @insults = get_insults_by_age(set)
+      query = get_insults_by_age(set)
+      @insults = query[:insults]
+      total = query[:count]
     elsif @filter == 'mine'
       if (!session[:user_id])
         redirect_to '/login'
       end
-      @insults = get_insults_by_user(session[:user_id])
+      query = get_insults_by_user(session[:user_id], set)
+      @insults = query[:insults]
+      total = query[:count]
     else
-      @filter = 'top'
-      @insults = get_insults_by_rating(set)
+      query = get_insults_by_rating(set)
+      @insults = query[:insults]
+      total = query[:count]
+    end
+
+    @batch_current = set
+    @batch_previous = set - 15
+
+    if (@batch_previous < 0)
+      @batch_previous = 0
+    end
+
+    if (set + 15 < total)
+      @batch_next = set + 15
     end
     
     @insult = Insult.new
+
+    respond_to do |format|
+      format.json { render json: @insults }
+      format.html
+    end
   end
 end
