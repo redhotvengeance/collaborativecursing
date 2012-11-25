@@ -24,4 +24,18 @@ module ApplicationHelper
 
     vote
   end
+
+  def user_flagged(insult)
+    user = session[:user_id]
+    
+    flagged = false
+
+    insult.flags.each do |f|
+      if (f.user_id == user)
+        flagged = true
+      end
+    end
+
+    flagged
+  end
 end

@@ -1,7 +1,10 @@
 CollaborativeCursing::Application.routes.draw do
   root :to => "Home#index"
   
-  #resources :insults
+  controller :flags do
+    post 'flag' => :flag, :as => 'flag'
+    delete 'unflag' => :unflag, :as => 'unflag'
+  end
 
   controller :insults do
     get 'insults' => :index

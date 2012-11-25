@@ -11,15 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121124030135) do
+ActiveRecord::Schema.define(:version => 20121125230244) do
+
+  create_table "flags", :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "insult_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "flags", ["insult_id"], :name => "index_flags_on_insult_id"
+  add_index "flags", ["user_id"], :name => "index_flags_on_user_id"
 
   create_table "insults", :force => true do |t|
     t.string   "insult"
     t.integer  "points",     :default => 0
     t.integer  "user_id"
-    t.boolean  "is_flagged", :default => false
-    t.datetime "created_at",                    :null => false
-    t.datetime "updated_at",                    :null => false
+    t.datetime "created_at",                :null => false
+    t.datetime "updated_at",                :null => false
   end
 
   add_index "insults", ["user_id"], :name => "index_insults_on_user_id"
