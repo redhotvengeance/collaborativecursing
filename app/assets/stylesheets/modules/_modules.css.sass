@@ -37,6 +37,20 @@
     margin-left: auto
     margin-right: auto
 
+  > p
+    color: #ccc
+    padding-right: 21px
+    padding-top: 6px
+    float: right
+
+    > a
+      max-width: 160px
+      color: white
+      overflow: hidden
+      text-overflow: ellipsis
+      white-space: nowrap
+      padding-bottom: 2px
+
 @media screen and (max-width: 1120px)
   .sidebar
     right: 4%
@@ -105,26 +119,19 @@
   margin-top: 5px
   margin-left: auto
   margin-right: auto
-
+  
   > li
+    display: inline
     color: white
     float: right
 
     > a
-      display: inline-block
       max-width: 160px
       color: white
       overflow: hidden
       text-overflow: ellipsis
       white-space: nowrap
       padding-bottom: 2px
-
-    &.or
-      > p
-        display: inline
-        color: #ccc
-        padding-left: 3px
-        padding-right: 3px
 
     &.points
       > p

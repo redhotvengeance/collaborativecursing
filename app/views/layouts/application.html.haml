@@ -11,21 +11,16 @@
       %header.sidebar
         %a.logo{:href => root_path}
         %span
-        %ul.user-info
-          -if current_user
+        -if current_user
+          %ul.user-info
             %li.points
               %p= current_user.points
             %li
               =link_to current_user.name, user_path(current_user.id)
             %li.logout
               =link_to 'Logout', logout_path, method: :delete, class: 'logout'
-          -else
-            %li
-              =link_to 'Sign Up', sign_up_path
-            %li.or
-              %p or
-            %li
-              =link_to 'Login', login_path
+        -else
+          %p <a href="#{login_path}">Login</a> or <a href="#{sign_up_path}">Sign Up</a>
         %nav.main-nav
           %ul
             %li{:class => current_nav_item('top')}
