@@ -1,4 +1,6 @@
 class VotesController < ApplicationController
+  include PointsCalculator
+
   def vote
     Vote.transaction do
       if (session[:user_id])
@@ -17,26 +19,11 @@ class VotesController < ApplicationController
             vote.insult_id = insult_id
             vote.user_id = user_id
             vote.save!
+
+            tally_insult_points(insult_id)
             
-            insult_points = 0
-
-            insult.votes.each do |v|
-              insult_points += v.value.to_i
-            end
-
-            insult.points = insult_points
-            insult.save!
-
             if (insult.user_id)
-              insultor = User.find(insult.user_id)
-              insultor_points = 0
-
-              insultor.insults.each do |i|
-                insultor_points += i.points.to_i
-              end
-              
-              insultor.points = insultor_points
-              insultor.save!
+              tally_user_points(insult.user_id)
             end
 
             redirect_to '/'
@@ -66,25 +53,10 @@ class VotesController < ApplicationController
           if (vote)
             vote.destroy
 
-            insult_points = 0
-
-            insult.votes.each do |v|
-              insult_points += v.value.to_i
-            end
-
-            insult.points = insult_points
-            insult.save!
-
+            tally_insult_points(insult_id)
+            
             if (insult.user_id)
-              insultor = User.find(insult.user_id)
-              insultor_points = 0
-
-              insultor.insults.each do |i|
-                insultor_points += i.points.to_i
-              end
-              
-              insultor.points = insultor_points
-              insultor.save!
+              tally_user_points(insult.user_id)
             end
           end
 

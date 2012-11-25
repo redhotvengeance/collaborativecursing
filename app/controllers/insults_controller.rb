@@ -1,5 +1,6 @@
 class InsultsController < ApplicationController
   include InsultsRetriever
+  include PointsCalculator
 
   # POST /insults
   # POST /insults.json
@@ -25,10 +26,19 @@ class InsultsController < ApplicationController
   # DELETE /insults/1.json
   def destroy
     @insult = Insult.find(params[:id])
+    
+    if @insult.user_id
+      user_id = @insult.user_id
+    end
+
     @insult.destroy
 
+    if (user_id)
+      tally_user_points(user_id)
+    end
+
     respond_to do |format|
-      format.html { redirect_to insults_url }
+      format.html { redirect_to root_path }
       format.json { head :no_content }
     end
   end

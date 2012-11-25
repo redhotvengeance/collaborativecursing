@@ -63,7 +63,6 @@
   background-color: rgba(255, 162, 0, .4)
   padding-top: 12px
   padding-left: 12px
-  //margin-bottom: 25px
   float: right
 
   &:hover
@@ -80,7 +79,6 @@
   background-color: rgba(255, 162, 0, .4)
   padding-top: 12px
   padding-left: 32px
-  //margin-bottom: 25px
   float: left
 
   &:hover
@@ -416,12 +414,27 @@
   >.flag
     display: inline-block
     padding-left: 2px
+    padding-right: 2px
     font-family: 'Arvo', serif
     font-size: 12px
     font-size: .75rem
     font-weight: 400
     font-style: normal
     color: $light-grey
+
+    &:hover
+      color: $orange
+
+  >.delete
+    display: inline-block
+    padding-left: 7px
+    font-family: 'Arvo', serif
+    font-size: 12px
+    font-size: .75rem
+    font-weight: 400
+    font-style: normal
+    color: $light-grey
+    border-left: 1px solid $light-grey
 
     &:hover
       color: $orange

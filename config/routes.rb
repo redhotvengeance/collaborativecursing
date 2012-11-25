@@ -6,7 +6,7 @@ CollaborativeCursing::Application.routes.draw do
   controller :insults do
     get 'insults' => :index
     post 'insults' => :create
-    delete 'insults/:id' => :destroy
+    delete 'insults/:id' => :destroy, :as => 'delete_insult'
   end
 
   controller :sessions do

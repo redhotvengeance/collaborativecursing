@@ -25,5 +25,6 @@
       %span.author!= "Submitted by <a href='#{user_path(insult.user.id)}'>#{insult.user.name}</a>"
     - else
       %span.author Submitted by Anonymous
-    
     %a.flag{:href => '#'} Flag
+    - if insult.user == current_user
+      =link_to 'Delete', delete_insult_path(insult), method: :delete, class: 'delete'
