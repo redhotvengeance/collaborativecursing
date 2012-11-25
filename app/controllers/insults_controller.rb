@@ -2,6 +2,8 @@ class InsultsController < ApplicationController
   include InsultsRetriever
   include PointsCalculator
 
+  skip_before_filter :authorize, only: [:create]
+
   # POST /insults
   # POST /insults.json
   def create
@@ -13,7 +15,7 @@ class InsultsController < ApplicationController
 
     respond_to do |format|
       if @insult.save
-        format.json { render json: @insult, status: :created, location: @insult }
+        format.json { render json: @insult, status: :created }
         format.html { redirect_to "#{params[:redirect]}", notice: 'You\'ve successfully joined the ranks of jackassery!' }
       else
         format.json { render json: @insult.errors, status: :unprocessable_entity }

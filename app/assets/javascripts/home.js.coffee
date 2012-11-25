@@ -17,7 +17,7 @@ class @CollaborativeCursing.Home extends @CollaborativeCursing.AbstractControlle
           error: (event) =>
             $('.insult-notice').text 'Hmmm, somthing went wrong. Give it another shot!'
             $('.insult-notice').slideDown()
-          success: (event) =>
+          success: (data) =>
             $('.insult-notice').text 'You\'ve successfully joined the ranks of jackassery!'
             $('.insult-notice').slideDown().delay(3000).slideUp()
             $('.insult-box').val ''
