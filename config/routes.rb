@@ -26,6 +26,7 @@ CollaborativeCursing::Application.routes.draw do
     put 'user/:id' => :update
     delete 'user/:id' => :destroy
     get 'user/:id/edit' => :edit, :as => 'edit_user'
+    get 'user/verify/:id/:verification' => :verify
   end
 
   controller :votes do

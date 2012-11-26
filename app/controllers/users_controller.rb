@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   include InsultsRetriever
   
-  skip_before_filter :authorize, only: [:new, :create, :show]
+  skip_before_filter :authorize, only: [:new, :create, :show, :verify]
 
   # GET /users/1
   # GET /users/1.json
@@ -40,14 +40,37 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
 
+    @user.verification = SecureRandom.uuid
+
     respond_to do |format|
       if @user.save
+        UserMailer.verification_email(@user).deliver
+        
         format.html { redirect_to root_path, notice: "User #{@user.name} was successfully created." }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }
         format.json { render json: @user.errors, status: :unprocessable_entity }
       end
+    end
+  end
+
+  def verify
+    @user = User.find_by_id(params[:id])
+
+    if @user
+      if params[:verification] == @user.verification
+        @user.is_verified = true
+        if @user.save
+          redirect_to root_path, notice: "You've been verified!"
+        else
+          redirect_to root_path, notice: "Looks like your user verification failed."
+        end
+      else
+        redirect_to root_path, notice: "Looks like your user verification failed."
+      end
+    else
+      redirect_to root_path
     end
   end
 
