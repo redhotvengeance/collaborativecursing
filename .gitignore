@@ -15,6 +15,4 @@
 /tmp
 
 .DS_Store
-
-/config/config.yml
-/config/database.yml
+.env
