@@ -43,7 +43,6 @@ class HomeController < ApplicationController
     @insult = Insult.new
 
     respond_to do |format|
-      format.json { render json: @insults }
       format.html
     end
   end
