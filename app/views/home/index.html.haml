@@ -2,6 +2,9 @@
   %h1 The crowdsourced engine of world-class insults.
   = form_for @insult do |f|
     %h2.insult-notice= notice
+    .insult-comment
+      If you can see this, do not fill in this field. Also, enable CSS.
+      = text_field_tag :comment
     = f.text_area :insult, :class => 'insult-box', :placeholder => "Go on, insult us."
     = hidden_field_tag(:redirect, request.fullpath)
     .insult-submit
