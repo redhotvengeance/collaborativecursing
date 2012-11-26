@@ -1,0 +1,23 @@
+.top-box
+  %h1 The crowdsourced engine of world-class insults.
+  = form_for @insult do |f|
+    %h2.insult-notice= notice
+    .insult-comment
+      If you can see this, do not fill in this field. Also, enable CSS.
+      = text_field_tag :comment
+    = f.text_area :insult, :class => 'insult-box', :placeholder => "Go on, insult us."
+    = hidden_field_tag(:redirect, request.fullpath)
+    .insult-submit
+      %h2 *We are equal opportunity insult-artists. Please make sure your insult can apply to all humans, regardless of religion, race, or gender.*
+      - if current_user
+        = f.submit 'Submit', :class => 'form-submit'
+      - else
+        = f.submit 'Submit Anonymously', :class => 'form-submit'
+- if (alert)
+  %span.vote-notice= alert
+.insults
+  =render(:partial => "./partials/insult", :collection => @insults, :as => :insult)
+  - if (@batch_current > 0)
+    %a.previous{:href => "/#{@filter}/#{@batch_previous}"} Previous
+  - if (@batch_next)
+    %a.next{:href => "/#{@filter}/#{@batch_next}"} Next

@@ -1,0 +1,22 @@
+= form_for @user do |f|
+  //- if @user.errors.any?
+  //  #error_explanation
+  //    %h2= "#{pluralize(@user.errors.count, "error")} prohibited this user from being saved:"
+  //    %ul
+  //      - @user.errors.full_messages.each do |msg|
+  //        %li= msg
+  .form
+    .field
+      = f.label :name, :class => 'form-label'
+      = f.text_field :name, :class => 'form-text', :placeholder => 'your_mom'
+    .field
+      = f.label :email, :class => 'form-label'
+      = f.email_field :email, :class => 'form-text', :placeholder => 'check.you.are@real.com'
+    .field
+      = f.label :password, 'Password', :class => 'form-label'
+      = f.password_field :password, :class => 'form-text', :placeholder => 'make it good'
+    .field
+      = f.label :password_confirmation, 'Confirm', :class => 'form-label'
+      = f.password_field :password_confirmation, :class => 'form-text', :placeholder => 'make it the same'
+    .field
+      = f.submit 'Submit', :class => 'form-submit'

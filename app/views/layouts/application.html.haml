@@ -1,9 +1,37 @@
 !!! 5
 %html
-  %head
-    %title Collaborative Cursing
-    = stylesheet_link_tag :application, :media => "all"
-    = javascript_include_tag :application
-    = csrf_meta_tags
-  %body
-    = yield
+  
+  =render(:partial => "./partials/head")
+
+  %body{'data-controller' => controller_name.capitalize, 'data-action' => action_name.downcase}
+    %noscript.no-js No JavaScript? That's downright insulting. And that's saying something, coming from us.
+    .wrapper
+      %header.sidebar
+        %a.logo{:href => root_path}
+        %span
+        -if current_user
+          %ul.user-info
+            %li.points
+              %p= current_user.points
+            %li
+              =link_to current_user.name, user_path(current_user.id)
+            %li.logout
+              =link_to 'Logout', logout_path, method: :delete, class: 'logout'
+        -else
+          %p <a href="#{login_path}">Login</a> or <a href="#{sign_up_path}">Sign Up</a>
+        %nav.main-nav
+          %ul
+            %li{:class => current_nav_item('top')}
+              %a{:href => '/top'} TOP RATED
+            %li{:class => current_nav_item('new')}
+              %a{:href => '/new'} NEWEST
+            -if current_user
+              %li{:class => current_nav_item('mine')}
+                %a{:href => '/mine'} MINE
+        .footer
+          %p Furiously formed by <a href='http://redhotvengeance.com/' target='_blank'>Red Hot Vengeance</a>
+          %p Copyright 2012
+      .content
+        = yield
+    
+    =render(:partial => "./partials/tracking")

@@ -1,0 +1,9 @@
+.top-box.user-box
+  %h1= @user.name
+  %h2= @user.points
+
+  - if current_user == @user
+    = link_to 'Edit', edit_user_path(@user)
+
+.insults
+  =render(:partial => "./partials/insult", :collection => @insults, :as => :insult)

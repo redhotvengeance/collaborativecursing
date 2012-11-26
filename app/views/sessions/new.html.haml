@@ -1,0 +1,20 @@
+.top-box
+  %h1 Login and start cursing.
+
+  - if flash[:alert]
+    %h2.notice= flash[:alert]
+
+  - if session[:user_id]
+    %p Logged in
+    = button_to 'Logout', logout_path, method: :delete
+  - else
+    = form_tag do
+      %fieldset.form
+        .field
+          = label_tag :name, 'Name', :class => 'form-label'
+          = text_field_tag :name, params[:name], :class => 'form-text'
+        .field
+          = label_tag :password, 'Password', :class => 'form-label'
+          = password_field_tag :password, params[:password], :class => 'form-text'
+        .field
+          = submit_tag 'Login', :class => 'form-submit'
