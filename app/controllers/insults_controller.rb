@@ -1,6 +1,4 @@
 class InsultsController < ApplicationController
-  include InsultsRetriever
-  include PointsCalculator
 
   skip_before_filter :authorize, only: [:create]
 
