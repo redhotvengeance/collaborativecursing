@@ -44,7 +44,7 @@ class UsersController < ApplicationController
       if @user.save
         UserMailer.verification_email(@user).deliver
         
-        format.html { redirect_to root_path, notice: "User #{@user.name} was successfully created." }
+        format.html { redirect_to root_path, notice: "User #{@user.name} was successfully created. Check your email to verify your account." }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }
@@ -60,12 +60,12 @@ class UsersController < ApplicationController
       if params[:verification] == @user.verification
         @user.is_verified = true
         if @user.save
-          redirect_to root_path, notice: "You've been verified!"
+          redirect_to login_path, notice: "You've been verified!"
         else
-          redirect_to root_path, notice: "Looks like your user verification failed."
+          redirect_to login_path, notice: "Looks like your user verification failed."
         end
       else
-        redirect_to root_path, notice: "Looks like your user verification failed."
+        redirect_to login_path, notice: "Looks like your user verification failed."
       end
     else
       redirect_to root_path
