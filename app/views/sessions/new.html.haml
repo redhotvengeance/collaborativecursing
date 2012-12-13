@@ -1,12 +1,17 @@
 .top-box
-  %h1 Login and start cursing.
+  - if session[:user_id]
+    %h1 You are logged in!
+  - else
+    %h1 Login and start cursing.
 
   - if flash[:alert]
     %h2.notice= flash[:alert]
 
+  - if flash[:notice]
+    %h2.notice= flash[:notice]
+
   - if session[:user_id]
-    %p Logged in
-    = button_to 'Logout', logout_path, method: :delete
+    = button_to 'Logout', logout_path, method: :delete, :class => 'form-submit'
   - else
     = form_tag do
       %fieldset.form

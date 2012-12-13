@@ -1,13 +1,11 @@
 class UsersController < ApplicationController
-  include InsultsRetriever
-  
   skip_before_filter :authorize, only: [:new, :create, :show, :verify]
 
   # GET /users/1
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    @insults = get_insults_by_user(params[:id], 0, true, nil)[:insults]
+    @insults = Insult.find_by_user(params[:id], 0, true, nil)
 
     respond_to do |format|
       format.html # show.html.erb
@@ -46,7 +44,7 @@ class UsersController < ApplicationController
       if @user.save
         UserMailer.verification_email(@user).deliver
         
-        format.html { redirect_to root_path, notice: "User #{@user.name} was successfully created." }
+        format.html { redirect_to root_path, notice: "User #{@user.name} was successfully created. Check your email to verify your account." }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }
@@ -62,12 +60,12 @@ class UsersController < ApplicationController
       if params[:verification] == @user.verification
         @user.is_verified = true
         if @user.save
-          redirect_to root_path, notice: "You've been verified!"
+          redirect_to login_path, notice: "You've been verified!"
         else
-          redirect_to root_path, notice: "Looks like your user verification failed."
+          redirect_to login_path, notice: "Looks like your user verification failed."
         end
       else
-        redirect_to root_path, notice: "Looks like your user verification failed."
+        redirect_to login_path, notice: "Looks like your user verification failed."
       end
     else
       redirect_to root_path

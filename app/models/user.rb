@@ -9,4 +9,19 @@ class User < ActiveRecord::Base
   validates :name, presence: true, uniqueness: true
 
   has_secure_password
+
+  def self.calculate_points(user_id)
+    user = find_by_id user_id
+
+    if (user)
+      user_points = 0
+
+      user.insults.each do |i|
+        user_points += i.points.to_i
+      end
+      
+      user.points = user_points
+      user.save!
+    end
+  end
 end

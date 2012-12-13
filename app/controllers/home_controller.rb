@@ -1,6 +1,4 @@
 class HomeController < ApplicationController
-  include InsultsRetriever
-
   skip_before_filter :authorize
 
   def index
@@ -13,20 +11,17 @@ class HomeController < ApplicationController
     end
 
     if @filter == 'new'
-      query = get_insults_by_age(set)
-      @insults = query[:insults]
-      total = query[:count]
+      @insults = Insult.find_by_age(set)
+      total = Insult.count
     elsif @filter == 'mine'
       if (!session[:user_id])
         redirect_to '/login'
       end
-      query = get_insults_by_user(session[:user_id], set)
-      @insults = query[:insults]
-      total = query[:count]
+      @insults = Insult.find_by_user(session[:user_id], set)
+      total = Insult.where("user_id = #{session[:user_id]}").count
     else
-      query = get_insults_by_rating(set)
-      @insults = query[:insults]
-      total = query[:count]
+      @insults = Insult.find_by_rating(set)
+      total = Insult.count
     end
 
     @batch_current = set

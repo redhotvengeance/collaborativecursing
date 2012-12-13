@@ -1,6 +1,4 @@
 class VotesController < ApplicationController
-  include PointsCalculator
-
   def vote
     Vote.transaction do
       if (session[:user_id])
@@ -20,10 +18,10 @@ class VotesController < ApplicationController
             vote.user_id = user_id
             vote.save!
 
-            tally_insult_points(insult_id)
-            
+            Insult.calculate_points(insult_id)
+
             if (insult.user_id)
-              tally_user_points(insult.user_id)
+              User.calculate_points(insult.user_id)
             end
 
             redirect_to "#{params[:redirect]}"
@@ -53,10 +51,10 @@ class VotesController < ApplicationController
           if (vote)
             vote.destroy
 
-            tally_insult_points(insult_id)
+            Insult.calculate_points(insult_id)
             
             if (insult.user_id)
-              tally_user_points(insult.user_id)
+              User.calculate_points(insult.user_id)
             end
           end
 
