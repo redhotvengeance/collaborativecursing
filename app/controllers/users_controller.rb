@@ -1,13 +1,11 @@
 class UsersController < ApplicationController
-  include InsultsRetriever
-  
   skip_before_filter :authorize, only: [:new, :create, :show, :verify]
 
   # GET /users/1
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-    @insults = get_insults_by_user(params[:id], 0, true, nil)[:insults]
+    @insults = Insult.find_by_user(params[:id], 0, true, nil)
 
     respond_to do |format|
       format.html # show.html.erb
