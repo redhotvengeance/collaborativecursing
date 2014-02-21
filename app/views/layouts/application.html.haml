@@ -1,6 +1,6 @@
 !!! 5
 %html
-  
+
   =render(:partial => "./partials/head")
 
   %body{'data-controller' => controller_name.capitalize, 'data-action' => action_name.downcase}
@@ -30,8 +30,8 @@
                 %a{:href => '/mine'} MINE
         .footer
           %p Furiously formed by <a href='http://redhotvengeance.com/' target='_blank'>Red Hot Vengeance</a>
-          %p Copyright 2012
+          %p Copyright 2014
       .content
         = yield
-    
+
     =render(:partial => "./partials/tracking")
